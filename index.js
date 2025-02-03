@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const response = await fetch('https://racsharikitest.appiancloud.com/suite/webapi/uploadDocument', {
             method: 'POST',
             headers: {
-                'Appian-API-Key': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmYjgwMjdlMi0wMmQ3LTZhMjItMzA4Zi1lMjI0N2ViZGI0NTkifQ.vtwQw8tQH06ftW-C3guvW9oPn15SHjDPNLydTLZpAf4',
+                'Appian-API-Key': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiMDY0MjkwNS1lNDU3LTRiNDItODAxZC03NGM3Y2VjMzIyN2MifQ.gl0VpiVMQhtch5vI0mS5dehXJHg_P1TFAKfd7E8Ke3s',
                 'Content-Type': file?.type, 
             },
             body: buf,
@@ -263,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Appian-API-Key': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmYjgwMjdlMi0wMmQ3LTZhMjItMzA4Zi1lMjI0N2ViZGI0NTkifQ.vtwQw8tQH06ftW-C3guvW9oPn15SHjDPNLydTLZpAf4',
+                    'Appian-API-Key': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiMDY0MjkwNS1lNDU3LTRiNDItODAxZC03NGM3Y2VjMzIyN2MifQ.gl0VpiVMQhtch5vI0mS5dehXJHg_P1TFAKfd7E8Ke3s',
                 },
                 method: 'POST',
                 body: JSON.stringify(payload),
