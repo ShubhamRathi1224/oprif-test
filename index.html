@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multilingual Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            direction: ltr;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 2%;
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #2574bb; /* Primary Blue */
+        }
+
+        .inline-50-block {
+            display: inline-block;
+            width: 49%;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555759; /* Secondary Grey */
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            max-width: -webkit-fill-available;
+            padding: 10px;
+            border: 1px solid #06a7e0; /* Secondary Blue */
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .form-group .captcha-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* margin-bottom: 5px; */
+        }
+
+        .form-group #captchaInput {
+            margin: 5px 0;
+        }
+
+        #contactForm {
+            display: none;
+        }
+
+        .form-group .captcha-display {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            background: #f4f4f9;
+            padding: 10px;
+            border: 1px solid #502c84; /* Purple */
+            border-radius: 4px;
+        }
+
+        .form-group .refresh-captcha {
+            background-color: #08ad8d; /* Green */
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .form-group .refresh-captcha:hover {
+            background-color: #06a7e0; /* Secondary Blue */
+        }
+
+        .form-actions {
+            text-align: center;
+        }
+
+        .form-actions button {
+            background-color: #2574bb; /* Primary Blue */
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-actions button:hover {
+            background-color: #06a7e0; /* Secondary Blue */
+        }
+
+        .message {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .message.success {
+            color: #08ad8d; /* Green */
+        }
+
+        .message.error {
+            color: #ef4129; /* Red */
+        }
+
+        .language-switch {
+            text-align: end;
+            margin-bottom: 20px;
+        }
+
+        .language-switch button {
+            background-color: #502c84; /* Purple */
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .language-switch button:hover {
+            background-color: #2574bb; /* Primary Blue */
+        }
+    </style>
+
+    <script src="./index.js" defer></script>
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="language-switch">
+            <button id="switchLang">Switch to Arabic</button>
+        </div>
+        
+        <div id="captchaValidationSection" class="form-group">
+            <label for="captchaInput" id="captchaLabel">CAPTCHA</label>
+            <div class="captcha-box">
+                <span id="captchaDisplay" class="captcha-display"></span>
+                <button type="button" id="refreshCaptcha" class="refresh-captcha">Refresh</button>
+            </div>
+            <input type="text" id="captchaInput" class="captchaPlaceholder" placeholder="Enter the CAPTCHA" required>
+            <div class="form-actions">
+                <button type="button" id="validateCaptchaButton">Verify</button>
+            </div>
+            <div class="message" id="captchaMessage"></div>
+        </div>
+
+
+        <form id="contactForm">
+            <h1 id="formTitle">Incident Report Form</h1>
+
+            <!-- <div class="form-group">
+                <label for="name" id="nameLabel">Full Name</label>
+                <input type="text" id="name" name="name" class="namePlaceholder" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email" id="emailLabel">Email Address</label>
+                <input type="email" id="email" name="email" class="emailPlaceholder" placeholder="Enter your email" required>
+            </div> -->
+
+            <div class="form-group">
+                <label for="subject" id="subjectLabel">Subject</label>
+                <input type="text" id="subject" name="subject" class="subjectPlaceholder" placeholder="Enter subject" required>
+            </div>
+
+            <div class="form-group">
+                <label for="reportingDateTime" id="dateLabel">Reporting Date and Time</label>
+                <input type="datetime" id="reportingDateTime" name="reportingDateTime" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="incidentDateTime" id="incidentDateLabel">Incident Date and Time</label>
+                <input type="datetime-local" id="incidentDateTime" name="incidentDateTime">
+            </div>
+
+            <div class="form-group inline-50-block">
+                <label for="latitude" id="latitudeLabel">Latitude</label>
+                <input type="text" id="latitude" name="latitude" class="latitudePlaceholder" placeholder="Fetching latitude..." readonly>
+            </div>
+
+            <div class="form-group inline-50-block">
+                <label for="longitude" id="longitudeLabel">Longitude</label>
+                <input type="text" id="longitude" name="longitude" class="longitudePlaceholder" placeholder="Fetching longitude..." readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="locationDesc" id="locationDescLabel">Location Description</label>
+                <input type="text" id="locationDesc" name="locationDesc" class="locationDescPlaceholder" placeholder="Enter your location description" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contact" id="contactLabel">Contact Details</label>
+                <input type="number" id="contact" name="contact" class="contactPlaceholder" placeholder="Enter your contact details" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description" id="descriptionLabel">Description of Incident</label>
+                <textarea id="description" name="description" class="descriptionPlaceholder"
+                    placeholder="Provide a detailed description of the incident" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="evidence" id="evidenceLabel">Evidence Attachment</label>
+                <input type="file" id="evidence" name="evidence" accept="image/*,application/pdf" required>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" id="submiButton">Submit</button>
+            </div>
+        </form>
+        <div class="message" id="message"></div>
+    </div>
+
+</body>
+
+</html>
+
+
+
+<!-- 
+primary: 
+#2574bb, #555759,
+secondary: 
+#06a7e0,
+tertiary:
+red: #ef4129,
+purple: #502c84,
+green: #f26122,
+orange: #08ad8d,
+-->
