@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             messageElement.textContent = translations[currentLang].submitting;
-            const response = await fetch('httpshttps://racsharikitest.appiancloud.com/suite/webapi/createCase', {
+            const response = await fetch('https://racsharikitest.appiancloud.com/suite/webapi/createCase', {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
